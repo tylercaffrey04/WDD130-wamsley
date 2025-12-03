@@ -11,7 +11,7 @@
 }
 header{
     display: flex;
-    background-color: #ccd5ae ;
+    background-color: #faedcd ;
 }
 body{
     background: #fefefe;
@@ -32,18 +32,38 @@ nav{
 nav a{
     padding-left: 20px;
 }
+
 footer{
     display: flex;
     background: #ccd5ae;
 }
+footer .logo{
+    width:25%;
+}
 #links{
     width: 50%;
     text-align: center;
+    margin-top: 25px;
 }
 #links a{
-    margin-left: 5%;
-    
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+#socials{
+    width: 25%;
 }
 
-
 /* Body CSS - HOME PAGE*/
+
+#weather_icon{
+    width:50px;
+}
+
+/* Body CSS - Page 1 */
+
+
+
+/* Body CSS Page 2 */
+
+
