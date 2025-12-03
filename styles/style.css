@@ -1,11 +1,49 @@
+/* Secondary - #d4a373  */
+/* Primary #fefae0 */
+/* Accent 1 #ccd5ae  */
+/* Accent 2  #faedcd */
+
+
+/* Universal */
 *{
     padding: 0;
     margin: 0;
 }
 header{
     display: flex;
+    background-color: #ccd5ae ;
+}
+body{
+    background: #fefefe;
 }
 .logo img{
     border-radius: 50%;
     width: 100px;
+    margin-top: 10px;
+    margin-left:10px ;
+    margin-bottom: 5px;
 }
+nav{
+    width:100%;
+    text-align: right;
+    margin-top: 5%;
+    padding-right: 5%;
+}
+nav a{
+    padding-left: 20px;
+}
+footer{
+    display: flex;
+    background: #ccd5ae;
+}
+#links{
+    width: 50%;
+    text-align: center;
+}
+#links a{
+    margin-left: 5%;
+    
+}
+
+
+/* Body CSS - HOME PAGE*/
