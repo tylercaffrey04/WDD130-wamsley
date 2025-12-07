@@ -1,0 +1,269 @@
+/* journal-style.css for journal.html - Wireframe & Style Guide */
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display:wght@700&display=swap');
+
+:root {
+  --primary: #fefae0;
+  --secondary: #d4a373;
+  --accent1: #ccd5ae;
+  --accent2: #faedcd;
+  --heading-font: 'Momo Trust Display', sans-serif;
+  --body-font: 'Inconsolata', monospace;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: var(--accent2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  min-height: 48px;
+  height: 80px;
+}
+
+.logo img {
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  font-family: var(--body-font);
+}
+
+main {
+  max-width: 1150px;
+  min-height: 400px;
+  width: 100%;
+  margin: 1.5rem auto 1.5rem auto;
+  padding: 2rem 2rem;
+  background: linear-gradient(135deg, var(--accent1) 80%, var(--accent2) 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 40px rgba(204, 213, 174, 0.35), 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border: 3px solid var(--accent2);
+  flex: 1;
+}
+
+h2, h3, h4 {
+  font-family: var(--heading-font);
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.4rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.journal-entries {
+  margin-top: 1rem;
+  background: #fff;
+  border: 3px solid var(--accent2);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  min-height: 160px;
+  max-width: 900px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  box-shadow: 0 6px 40px rgba(212, 163, 115, 0.15), 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--accent2);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.menu button {
+  background: var(--accent1);
+  border: 3px solid var(--accent2);
+  color: #333;
+  font-family: var(--body-font);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.9rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(212, 163, 115, 0.15);
+  flex: 1;
+}
+
+.menu button:hover {
+  background: var(--secondary);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(212, 163, 115, 0.3);
+  transform: translateY(-2px);
+}
+
+.menu button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(212, 163, 115, 0.2);
+}
+
+.journal-section {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.journal-section p {
+  font-family: var(--body-font);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+#prompt-text {
+  font-style: italic;
+  color: var(--secondary);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.6rem 1rem;
+  background: var(--primary);
+  border-radius: 8px;
+  border-left: 4px solid var(--secondary);
+}
+
+#entry-text {
+  width: 100%;
+  min-height: 180px;
+  font-family: var(--body-font);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  border: 3px solid var(--accent2);
+  border-radius: 12px;
+  padding: 1rem;
+  background: var(--primary);
+  margin-bottom: 1rem;
+  box-shadow: inset 0 2px 8px rgba(204, 213, 174, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#entry-text:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: inset 0 2px 8px rgba(204, 213, 174, 0.15), 0 0 0 3px rgba(212, 163, 115, 0.1);
+}
+
+#todays-entry button, #yesterdays-entry button, #menu-section button {
+  background: var(--secondary);
+  border: 3px solid var(--accent2);
+  color: #fff;
+  font-family: var(--body-font);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(212, 163, 115, 0.2);
+  margin-top: 0.5rem;
+}
+
+#todays-entry button:hover, #yesterdays-entry button:hover, #menu-section button:hover {
+  background: var(--accent1);
+  color: #333;
+  box-shadow: 0 6px 20px rgba(212, 163, 115, 0.3);
+  transform: translateY(-2px);
+}
+
+#todays-entry button:active, #yesterdays-entry button:active, #menu-section button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(212, 163, 115, 0.2);
+}
+
+#save-message, #autosave-message {
+  margin-top: 0.75rem;
+  font-family: var(--body-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+#yesterday-text {
+  padding: 1rem;
+  background: var(--primary);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent1);
+  line-height: 1.7;
+}
+
+footer {
+  background: var(--accent2);
+  padding: 0.75rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  color: #333;
+  margin-top: auto;
+}
+
+.footer-links, .footer-socials, .footer-copyright, .footer-privacy, .footer-terms {
+  margin: 0 0.5rem;
+}
+
+.footer-socials a {
+  margin-right: 0.5rem;
+}
+
+.footer-socials img {
+  width: 22px;
+  height: 22px;
+}
+
+footer .logo img {
+  max-width: 70px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+}

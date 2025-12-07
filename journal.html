@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/journal-style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="logo image" id="top_logo">
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="#">Journal</a>
+        </nav>
+    </header>    
+    <main>
+        <h2>Your Journal</h2>
+            <h3>"...turning procrastination into productivity..."</h3>
+        <section class="journal-entries">
+            <div class="menu">
+                <button type="button" onclick="showSection('menu-section')">Menu</button>
+                <button type="button" onclick="showSection('yesterdays-entry')">Yesterday's Entry</button>
+                <button type="button" onclick="showSection('todays-entry')">Today's entry</button>
+            </div>
+            <div id="menu-section" class="journal-section">
+                <h4>Menu</h4>
+                <p>Welcome to your journal! Use the buttons above to navigate.</p>
+            </div>
+            <div id="yesterdays-entry" class="journal-section" style="display:none;">
+                <h4>Yesterday's Entry</h4>
+                <p id="yesterday-text"><em>No entry found for yesterday.</em></p>
+            </div>
+            <!-- Removed change-prompt section -->
+            <div id="todays-entry" class="journal-section" style="display:none;">
+                <h4>Today's Entry</h4>
+                <p id="prompt-text">What made you smile today?</p>
+                <button type="button" onclick="changePrompt()">Change prompt</button><br><br>
+                <textarea id="entry-text" rows="4" cols="50" placeholder="Write your thoughts here..."></textarea><br>
+                <button onclick="saveEntry()">Save Entry</button>
+                <div id="save-message" style="color:green;"></div>
+                <div id="autosave-message" style="color:gray;font-size:small;"></div>
+            </div>
+            <script>
+            // --- How this works ---
+            // 1. When you write an entry and click 'Save Entry', it saves the entry, prompt, and date to localStorage as an array of entries.
+            // 2. On page load, it checks localStorage for entries, and displays today's and yesterday's entries in their sections.
+            // 3. Changing the prompt only affects the prompt shown for the next entry, not past entries.
+
+            function showSection(sectionId) {
+                const sections = document.querySelectorAll('.journal-section');
+                sections.forEach(sec => sec.style.display = 'none');
+                document.getElementById(sectionId).style.display = 'block';
+            }
+
+            const prompts = [
+                'What made you smile today?',
+                'Describe a challenge you overcame recently.',
+                'What are you grateful for right now?',
+                'Write about a favorite memory.',
+                'What is something new you learned this week?',
+                'How do you relax after a long day?',
+                'What is a goal you have for tomorrow?'
+            ];
+
+            function changePrompt() {
+                const promptText = document.getElementById('prompt-text');
+                let newPrompt;
+                do {
+                    newPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+                } while (promptText.textContent === newPrompt && prompts.length > 1);
+                promptText.textContent = newPrompt;
+            }
+
+            function saveEntry(showMessage = true) {
+                const entryText = document.getElementById('entry-text').value.trim();
+                const prompt = document.getElementById('prompt-text').textContent;
+                // Allow saving even if entryText is empty
+                const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+                let entries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
+                // Remove any existing entry for today
+                entries = entries.filter(e => e.date !== today);
+                entries.push({ date: today, prompt, text: entryText });
+                localStorage.setItem('journalEntries', JSON.stringify(entries));
+                if (showMessage) {
+                    document.getElementById('save-message').textContent = 'Entry saved!';
+                }
+                loadEntries();
+            }
+
+            // Auto-save on input
+            let autosaveTimeout;
+            document.addEventListener('DOMContentLoaded', function() {
+                const entry = document.getElementById('entry-text');
+                entry.addEventListener('input', function() {
+                    clearTimeout(autosaveTimeout);
+                    autosaveTimeout = setTimeout(() => {
+                        saveEntry(false);
+                        const msg = document.getElementById('autosave-message');
+                        msg.textContent = 'Auto-saved';
+                        setTimeout(() => { msg.textContent = ''; }, 1000);
+                    }, 500); // Save 500ms after last input
+                });
+            });
+
+            function loadEntries() {
+                const entries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
+                const today = new Date().toISOString().slice(0, 10);
+                const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+                // Today's entry
+                const todays = entries.find(e => e.date === today);
+                if (todays) {
+                    document.getElementById('entry-text').value = todays.text;
+                    document.getElementById('prompt-text').textContent = todays.prompt;
+                } else {
+                    document.getElementById('entry-text').value = '';
+                }
+                // Yesterday's entry
+                const yest = entries.find(e => e.date === yesterday);
+                if (yest) {
+                    document.getElementById('yesterday-text').innerHTML = `<strong>Prompt:</strong> ${yest.prompt}<br><strong>Entry:</strong> ${yest.text}`;
+                } else {
+                    document.getElementById('yesterday-text').innerHTML = '<em>No entry found for yesterday.</em>';
+                }
+            }
+
+            // Load entries on page load
+            window.onload = function() {
+                loadEntries();
+            };
+            </script>
+        </section>
+    </main>
+    <footer>
+        <div class="logo"><img src="images/logo.png" alt="" id="bottom_logo"></div>
+        <div id="links" class="footer-links">
+            <a href="">link 1</a>
+            <a href="">link 2</a>
+            <a href="">link 3</a>
+            <a href="">link 4</a>
+        </div>
+        <div id="socials" class="footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" class="Instagram" style="width:24px;height:24px;"></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" class="FaceBook" style="width:24px;height:24px;"></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" class="X" style="width:24px;height:24px;"></a>
+        </div>
+        <div class="footer-copyright">© 2025 Corbin Wamsley</div>
+        <div class="footer-privacy">Privacy Policy</div>
+        <div class="footer-terms">Terms of Service</div>
+    </footer>
+</body>
+</html>
