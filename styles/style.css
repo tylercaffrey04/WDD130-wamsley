@@ -5,40 +5,89 @@
 
 
 /* Universal */
-*{
-    padding: 0;
-    margin: 0;
-}
-header{
-    display: flex;
-    background-color: #faedcd ;
-}
-body{
-    background: #fefefe;
-}
-.logo img{
-    border-radius: 50%;
-    width: 100px;
-    margin-top: 10px;
-    margin-left:10px ;
-    margin-bottom: 5px;
-}
-nav{
-    width:100%;
-    text-align: right;
-    margin-top: 5%;
-    padding-right: 5%;
-}
-nav a{
-    padding-left: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display:wght@700&display=swap');
+
+:root {
+  --primary: #fefae0;
+  --secondary: #d4a373;
+  --accent1: #ccd5ae;
+  --accent2: #faedcd;
+  --heading-font: 'Momo Trust Display', sans-serif;
+  --body-font: 'Inconsolata', monospace;
 }
 
-footer{
-    display: flex;
-    background: #ccd5ae;
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
-footer .logo{
-    width:25%;
+
+header {
+  background: var(--accent2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  min-height: 48px;
+  height: 80px;
+}
+
+.logo img {
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  font-family: var(--body-font);
+}
+
+footer {
+  background: #faedcd;
+  padding: 0.75rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  color: #333;
+  margin-top: auto;
+}
+
+.footer-links, .footer-socials, .footer-copyright, .footer-privacy, .footer-terms {
+  margin: 0 0.5rem;
+}
+
+.footer-socials a {
+  margin-right: 0.5rem;
+}
+
+.footer-socials img {
+  width: 22px;
+  height: 22px;
+}
+
+footer .logo img {
+  max-width: 70px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
 }
 #links{
     width: 50%;
